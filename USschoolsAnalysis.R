@@ -1,5 +1,5 @@
 library(tidyverse)
-library(ISLR2) #Introduction to stastical learning with applications in R, second edition
+library(ISLR2) #Introduction to statistical learning with applications in R, second edition
 
 ?College
 glimpse(College)
@@ -8,17 +8,17 @@ glimpse(College)
 ggplot(College, aes(x = Grad.Rate)) + 
   geom_histogram()
 #good: its got a general bell shape, which is good
-#bad: there is a outlier, which is a redflag because gradrates should not go above 100%
+#bad: there is a outlier, which is a red flag because grad-rates should not go above 100%
 
-#trying to filter out the suspicious row data: where the gradrate is > 100
+#trying to filter out the suspicious row data: where the grad-rate is > 100
 suspicious <- filter(College, Grad.Rate >= 100) 
 View(suspicious)
 
-ggplot(College, aes(x = log10(F.Undergrad), #log10 is just a scailing factor, here we are scailing our F.undergrad data by a log of 10 so that it is eaaasier to read
+ggplot(College, aes(x = log10(F.Undergrad), #log10 is just a scaling factor, here we are scaling our F.undergrad data by a log of 10 so that it is eaaasier to read
                     y = Grad.Rate)) +
   geom_point()
 
-#since it is more easier to visualise F.Undergrad by log10 we should just mutate the column to log10
+#since it is more easier to visualize F.Undergrad by log10 we should just mutate the column to log10
 #and make a new database 
 College_sm <- College %>% 
   mutate(log_full = log10(F.Undergrad)) %>% 
